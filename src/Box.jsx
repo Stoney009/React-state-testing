@@ -1,30 +1,32 @@
 import React, { useState } from "react";
 
-const Box = () => {
-  const [hide, setHide] = useState(true);
+const Box = (props) => {
+  const handleBox = () => {
+    props.clickBox(props.id)
+  };
+
   return (
-    <div className="grid grid-cols-2  p-5 gap-5">
+    <div className="grid grid-cols-2  px-5 gap-2 my-2  ">
       <button
-        onClick={() => {
-          setHide(!hide);
-        }}
-        className="col-span-1 py-3 active:scale-90 duration-200 flex justify-center gap-10 items-center bg-blue-200 rounded-lg"
+        onClick={handleBox}
+        className="shadow col-span-2 py-3 active:scale-90 duration-200 flex justify-between p-5 gap-10 items-center bg-blue-200 rounded-lg"
       >
-        <span>Toogle </span>
+        <span className="">{props.question} </span>
         <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth={1.5}
-            stroke="currentColor"
-            className={`w-6 h-6 ${hide && 'rotate-180'}`}
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="m4.5 5.25 7.5 7.5 7.5-7.5m-15 6 7.5 7.5 7.5-7.5"
-            />
-          </svg>
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          strokeWidth={1.5}
+          stroke="currentColor"
+          className={`w-6 h-6 ${props.hide && "rotate-180"}`}
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="m4.5 15.75 7.5-7.5 7.5 7.5"
+          />
+        </svg>
+
         {/* {hide ? (
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -79,15 +81,11 @@ const Box = () => {
         close
       </button> */}
       <div
-        className={`p-5 ${hide && "hidden"} rounded-lg bg-gray-200 col-span-2`}
+        className={`p-5 shadow-sm ${
+          props.hide && "hidden"
+        } rounded-lg bg-gray-200 col-span-2`}
       >
-        <h1 className="font-bold text-2xl">Hello</h1>
-        <p>
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Minima
-          explicabo saepe deserunt, dolor, maxime hic a est nihil suscipit enim,
-          soluta ea. Voluptatum enim exercitationem, dolorum aspernatur id
-          debitis sunt.
-        </p>
+        <p>{props.answer}</p>
       </div>
     </div>
   );
